@@ -1,0 +1,145 @@
+body {
+	margin: 0;
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+	align-items: center;
+	min-height: 100vh;
+	background: #000;
+	color: #fff;
+	font-family: 'Raleway', sans-serif;
+}
+
+h1 {
+	margin-bottom: 60px;
+	letter-spacing: 15px;
+}
+
+.morpion {
+	width: 500px;
+	height: 500px;
+	display: flex;
+	flex-direction: column;
+}
+
+.row {
+	flex: 1;
+	/* parent en flex -- capacité à occuper l'espace restant du parent et non la taille du parent */
+	display: flex;
+	border-bottom: 5px solid #fff;
+}
+
+.row:last-child {
+	border-bottom: 0px;
+}
+
+.cell {
+	flex: 1;
+	/* parent en flex -- capacité à occuper l'espace restant du parent et non la taille du parent */
+	border-left: 5px solid #fff;
+	cursor: pointer;
+}
+
+.cell:first-child {
+	border-left: 0px;
+}
+
+/******************/
+.rond, .croix {
+	position: relative;
+}
+
+.rond::before {
+	content: '';
+	display: block;
+	position: absolute;
+	top: calc(50% - 60px);
+	left: calc(50% - 60px);
+	width: 100px;
+	height: 100px;
+	border: 10px solid yellow;
+	border-radius: 50%;
+	animation: apparitionCercle 1s;
+}
+
+@keyframes apparitionCercle {
+	0% {
+		transform: scale(0);
+		opacity: 0;
+	}
+
+	100% {
+		transform: scale(1);
+		opacity: 1;
+	}
+}
+
+.croix::before {
+	content: '';
+	display: block;
+	position: absolute;
+	top: 75px;
+	left: 23px;
+	width: 120px;
+	height: 10px;
+	background-color: blue;
+	animation: apparitionCroixBefore 1s;
+	animation-fill-mode: forwards;
+}
+
+@keyframes apparitionCroixBefore {
+	0% {
+		transform: rotate(0deg);
+		opacity: 0;
+	}
+
+	100% {
+		transform: rotate(40deg);
+		opacity: 1;
+	}
+}
+
+.croix::after {
+	content: '';
+	display: block;
+	position: absolute;
+	top: 75px;
+	left: 23px;
+	width: 120px;
+	height: 10px;
+	background-color: blue;
+	animation: apparitionCroixAfter 1s;
+	animation-fill-mode: forwards;
+}
+
+@keyframes apparitionCroixAfter {
+	0% {
+		transform: rotate(0deg);
+		opacity: 0;
+	}
+
+	100% {
+		transform: rotate(-40deg);
+		opacity: 1;
+	}
+}
+
+/******************/
+/*message victoire*/
+div.msg {
+	opacity: 0;
+}
+
+div#victoire {
+	text-align: center;
+}
+
+/* cta rejour */
+div.rejouer {
+	text-transform: uppercase;
+	background: white;
+	color: black;
+	padding: 10px;
+	font-weight: 900;
+	cursor: pointer;
+}
